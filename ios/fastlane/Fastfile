@@ -1,0 +1,16 @@
+update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Upload .ipa to TestFlight"
+  lane :beta do
+    increment_build_number(build_number: ENV["BUILD_NUMBER_IOS"].to_i)
+    build_app(
+      scheme: "Talent",
+      workspace: "talent.xcworkspace",
+      configuration: "Release"
+    )
+    upload_to_testflight(skip_waiting_for_build_processing: true);
+  end
+end

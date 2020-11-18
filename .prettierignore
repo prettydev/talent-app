@@ -1,0 +1,7 @@
+# Ignore artifacts:
+
+# Android:
+android/
+
+#iOS:
+ios/

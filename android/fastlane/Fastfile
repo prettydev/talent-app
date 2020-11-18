@@ -1,0 +1,25 @@
+default_platform(:android)
+platform :android do
+ # ... Some other lanes
+ lane :upload_internal do
+   gradle(task: "clean") # run the task clean
+   increment_version_code(version_code: ENV["BUILD_NUMBER_ANDROID"].to_i) 
+   gradle(
+     task: "bundle",
+     build_type: 'release',
+     properties: {
+      "android.injected.signing.store.file" => "talentapp.keystore",
+      "android.injected.signing.store.password" => "devops",
+      "android.injected.signing.key.alias" => "appkey",
+      "android.injected.signing.key.password" => "talent",
+      }, 
+    ) # compile a release bundle application app.aab
+   upload_to_play_store(
+     track: 'internal', # change track to "alpha" , "internal"
+     release_status: 'draft',
+     skip_upload_metadata: true,
+     skip_upload_images: true,
+     skip_upload_screenshots: true
+     )
+ end
+end

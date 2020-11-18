@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint-react",
+    "tslint-config-prettier",
+    "tslint-plugin-prettier"
+  ],
+  "jsRules": {},
+  "rules": {
+    "interface-name": false,
+    "jsx-no-lambda": false,
+    "object-literal-sort-keys": false,
+    "quotemark": [true, "jsx-double"],
+    "import-name": false,
+    "variable-name": [true, "allow-leading-underscore", "allow-pascal-case"],
+    "array-type": [true, "array"],
+    "max-line-length": [
+      true,
+      {
+        "gnore-pattern": "^import |^export {(.*?)}"
+      }
+    ],
+    "trailing-comma": [true, "never"],
+    "no-console": false,
+    "no-var-requires": false
+  }
+}

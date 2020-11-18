@@ -1,0 +1,19 @@
+schema: http://localhost:5000/graphql
+documents: "src/**/*.{ts,tsx}"
+hooks:
+  afterAllFileWrite:
+    - npm run lint:fix
+    - npm run pretty:fix
+generates:
+  ./src/generated/types-and-hooks.ts:
+    config:
+      withHooks: true
+      withComponent: false
+      withHOC: false
+      apolloReactCommonImportFrom: "@apollo/react-common"
+      apolloReactHooksImportFrom: "@apollo/react-hooks"
+      reactApolloVersion: 3
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
